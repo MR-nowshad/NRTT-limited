@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>A Little Question 💌</title>
+<style>
+:root{color-scheme:light dark;--bg:light-dark(#fff7fb,#170b13);--card:light-dark(#ffffff,#24121d);--text:light-dark(#351624,#fff1f7);--muted:light-dark(#80606e,#caaebb);--accent:#e94f8a;--accent2:#ff8bb4;--line:light-dark(#f0d9e4,#482838)}
+*{box-sizing:border-box}html,body{margin:0;min-height:100%;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}body{background:var(--bg);color:var(--text)}
+#app{min-height:100vh;background:var(--bg);display:grid;place-items:center;overflow:hidden;position:relative}
+.heart{position:absolute;font-size:24px;opacity:.15;animation:float 7s linear infinite}.h1{left:10%;bottom:-30px}.h2{right:12%;bottom:-40px;animation-delay:2s}.h3{left:48%;bottom:-30px;animation-delay:4s}
+@keyframes float{to{transform:translateY(-110vh) rotate(25deg)}}
+.card{width:min(92vw,620px);padding:48px 34px;border:1px solid var(--line);border-radius:30px;background:var(--card);box-shadow:0 24px 80px #8b31551f;text-align:center;position:relative;z-index:2}
+.eyebrow{letter-spacing:.16em;text-transform:uppercase;font-size:12px;color:var(--accent);font-weight:800}.emoji{font-size:54px;margin:8px 0 6px}.title{font-size:clamp(32px,7vw,56px);line-height:1.02;margin:0 0 16px}.copy{font-size:17px;line-height:1.65;color:var(--muted);max-width:470px;margin:0 auto 30px}.buttons{height:110px;position:relative;display:flex;justify-content:center;align-items:center;gap:14px}.btn{border:0;border-radius:999px;padding:14px 25px;font-weight:800;font-size:16px;cursor:pointer;transition:transform .18s,box-shadow .18s}.yes{background:var(--accent);color:white;box-shadow:0 10px 25px #e94f8a44}.yes:hover{transform:translateY(-2px) scale(1.02)}.no{background:transparent;color:var(--muted);border:1px solid var(--line);position:absolute;left:50%;transform:translateX(55px);transition:left .12s,top .12s}
+.hidden{display:none}.reveal{animation:pop .55s cubic-bezier(.2,1.4,.4,1)}@keyframes pop{from{opacity:0;transform:scale(.85) translateY(10px)}to{opacity:1;transform:scale(1) translateY(0)}}
+.final{font-size:clamp(25px,5vw,39px);line-height:1.15;margin:10px auto 16px}.small{color:var(--muted);font-size:14px}
+</style>
+</head>
+<body>
+<div id="app">
+  <div class="heart h1">♥</div><div class="heart h2">♥</div><div class="heart h3">♥</div>
+  <main class="card">
+    <section id="question">
+      <div class="eyebrow">A question for you</div>
+      <div class="emoji">💌</div>
+      <h1 class="title">আদর দিবা?</h1>
+      <p class="copy">ও মনু <b> </b>. 😌</p>
+      <div class="buttons" id="arena">
+        <button class="btn yes" id="yes">হু দিব 👀</button>
+        <button class="btn no" id="no"> না </button>
+      </div>
+      <div class="small"> দুঃখিত না বাটন কাজ করে না.</div>
+    </section>
+    <section id="final" class="hidden">
+      <div class="emoji">❤️‍🔥</div>
+      <div class="eyebrow">You said yes</div>
+      <h2 class="final">Ummmmmmmmmaaaahhhhh<br> মন চায় তোমার bum এ একটা কামড় দেই </h2>
+      <p class="copy"> ;) </p>
+      <div class="small"> </div>
+    </section>
+  </main>
+</div>
+<script>
+const no=document.getElementById('no'), arena=document.getElementById('arena'), yes=document.getElementById('yes');
+function moveNo(){
+  const r=arena.getBoundingClientRect(), b=no.getBoundingClientRect();
+  const maxX=Math.max(0,r.width-b.width), maxY=Math.max(0,r.height-b.height);
+  no.style.left=(Math.random()*maxX)+'px'; no.style.top=(Math.random()*maxY)+'px'; no.style.transform='none';
+}
+['mouseenter','pointerdown','touchstart','focus'].forEach(e=>no.addEventListener(e,moveNo));
+yes.addEventListener('click',()=>{document.getElementById('question').classList.add('hidden');const f=document.getElementById('final');f.classList.remove('hidden');f.classList.add('reveal')});
+</script>
+</body>
+</html>
